@@ -1,8 +1,10 @@
+import { Auth } from 'pages'
+import 'styles/index.css'
 
 const App = () => {
     return (
         <div>
-            REACT APP
+           <Auth />
         </div>
     )
 }
