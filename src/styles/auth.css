@@ -1,0 +1,84 @@
+/* AUTH */
+.page .auth {
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.page .auth .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    padding: 25px;
+    margin-top: 100px;
+    
+}
+.page .auth .form .form-header {
+    font-size: 18px;
+}
+.page .auth .form .input-group {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.page .auth .form .input-group .input {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0px 16px;
+    margin: 10px 0px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    transition: .5s all;
+}
+
+.page .auth .form .input-group .input:hover,
+.page .auth .form .input-group .input:focus,
+.page .auth .form .input-group .input:focus-visible {
+    border: 1px solid rgba(0, 0, 0, .5);
+}
+
+.page .auth .form .btn {
+    background-color: #222A2A;
+    color: rgba(255, 255, 255, .75);
+    border-radius: 10px;
+    transition: .5s all;
+    display: flex;
+    overflow: hidden;
+
+}
+.page .auth .form .btn .btn-body {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.page .auth .form .btn:hover {
+    background-color: #394249;
+}
+
+
+.page .auth .form .link {
+    opacity: .5;
+    margin-top: 40px;
+    transition: .5s all;
+    cursor: default;
+    border-radius: 10px;
+    display: flex;
+}
+
+.page .auth .form .link .link-body {
+    padding: 10px 20px;
+    font-size: 12px;
+
+}
+
+.page .auth .form .link:hover {
+    opacity: .8;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, .1);
+}
