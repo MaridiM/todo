@@ -1,0 +1,110 @@
+@import core/index
+
+/* PAGES */
+@import auth
+@import todo
+
+/* .load */
+body[data-load="true"] *
+    -webkit-transition: none !important
+    -moz-transition: none !important
+    -ms-transition: none !important
+    -o-transition: none !important
+
+body
+    width: 100%
+    height: 100vh
+    font-size: 16px
+    letter-spacing: 1.62px
+    color: #222
+    padding: 25px
+    user-select: none
+
+    &::-webkit-scrollbar
+        width: 0px
+
+svg, img
+    width: 100%
+    height: auto
+
+a
+    text-decoration: none
+    color: #222
+
+ul, li
+    list-style: none
+
+button
+    border: none
+    
+.page
+    width: 100%
+    max-width: 1024px
+    height: 100%
+    margin: auto
+    padding-bottom: 25px
+
+    /* HEADER */
+    .header
+        width: 100%
+        height: auto
+        background: #222A2A
+        margin-bottom: 20px
+        padding: 20px
+        border-radius: 20px
+        box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3)
+
+        header
+            display: flex
+            justify-content: space-between
+            position: relative
+
+            h1
+                padding: 0
+                margin: 0
+                color: rgba(255, 255, 255, 0.75)
+                font-size: 28px
+                margin: auto
+                position: relative
+
+            .link
+                transition: .5s all
+                background-color: rgba(255, 255, 255, 0.75)
+                border-radius: 10px
+                display: flex
+                position: absolute
+                right: 0
+                &-body
+                    padding: 10px 20px
+                    font-size: 14px
+
+            &:hover
+                background-color: #fff
+
+        /* NAV */
+        .nav
+            display: flex
+            justify-content: center
+            align-items: center
+
+            &-item
+                display: flex
+                justify-content: center
+                align-items: center
+                height: 32px
+                padding: 0 30px
+                border-right: 1px solid rgba(255, 255, 255, 0.75)
+
+                &:last-child
+                    border-right: none
+
+                a
+                    color: rgba(255, 255, 255, 0.75)
+                    transition: .5s all
+
+                &:hover
+                    color: #fff
+
+                &-acticve a
+                    color: #fff
+@import components/index
