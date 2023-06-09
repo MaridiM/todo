@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-const Auth = () => {
-    return <div>Auth Page</div>;
-};
-=======
 import { Input } from 'components'
 
 const Auth = () => {
@@ -26,7 +21,7 @@ const Auth = () => {
                         placeholder='Password'
                     />
                 </div>
-                
+
                 <button type='button' className='btn'>
                     <span className='btn-body'>Sign In</span>
                 </button>
@@ -38,6 +33,6 @@ const Auth = () => {
     )
 
 }
->>>>>>> cedc32fede90170abcc23d69fd9561b127b5c57b
+
 
 export default Auth;
