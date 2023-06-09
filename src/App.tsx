@@ -1,5 +1,5 @@
 import { Auth } from 'pages'
-import 'styles/index.css'
+import 'styles/index.sass'
 
 const App = () => {
     return (

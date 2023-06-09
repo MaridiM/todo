@@ -1,230 +1,160 @@
 /* TODO */
-.todo 
+.todo
     width: 100%
     height: auto
-    border: 1px solid rgba(0, 0, 0, .2)
+    border: 1px solid rgba(0, 0, 0, 0.2)
     border-radius: 10px
     padding: 20px
 
-
     /* TODO HEADER */
     /* DEFAULT */
-    &-header[data-create="false"] 
-        display: flex
-        justify-content: flex-end
-    
-        .btn 
+    &-header
+        &[data-create="false"]
+            display: flex
+            justify-content: flex-end
+
+        .btn
             padding: 10px 20px
             background-color: #222A2A
-            color: rgba(255, 255, 255, .75)
+            color: rgba(255, 255, 255, 0.75)
             border-radius: 10px
             font-size: 16px
             transition: .5s all
-    
-        &:hover 
-            background-color: #394249
-  
 
-    /* TODO HEADER */
-    /* CREATE */
-    &-header[data-create="true"] 
-        padding: 0px 10px
-    
+            &:hover
+                background-color: #394249
 
-    .input 
-        display: flex
-        margin: auto
-        height: 40px
+        /* TODO HEADER */
+        /* CREATE */
+        &[data-create="true"]
+            padding: 0px 10px
+
+        /* TODO LIST */
+    &-list
+        height: auto
         width: 100%
-        overflow: hidden
-        transition: .5s all
+        padding: 10px
+        margin: 20px 0px
+        border-top: 1px solid rgba(0, 0, 0, 0.2)
 
-        &-field 
-            border-radius: 10px 0px 0px 10px
+    &-item
+        border: 1px solid rgba(0, 0, 0, 0.2)
+        border-radius: 10px
+        margin: 5px 0px
+        padding: 10px
+
+        &[data-closed="true"]
+            opacity: .5
+
+        &[data-clicked="true"]
+            opacity: 1
+            box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2)
+
+        &:hover
+            box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2)
+
+        .item-header
+            display: flex
+            justify-content: space-between
+            align-items: center
+            font-size: 12px
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+            height: 24px
+
+        .item-body
+            display: flex
+            align-items: center
+            padding: 10px
+
+            /* TODO CHECK */
+        .item-check
+            height: 24px
+            width: 24px
+            min-width: 24px
+            border: 1px solid rgba(0, 0, 0, 0.2)
+            border-radius: 5px
+
+        /* TODO TEXT */
+        /* DEFAULT */
+        &[data-edit="false"] .item-body .item-text
+            margin-left: 16px
+            font-size: 14px
+            border-left: 1px solid rgba(0, 0, 0, 0.2)
+            border-right: 1px solid rgba(0, 0, 0, 0.2)
+            padding: 0 10px
+
+        /* TODO TEXT */
+        /* EDIT */
+        &[data-edit="true"] .item-body .item-text
             width: 100%
-            padding: 0px 16px 0px 16px
-            font-size: 16px
-            outline: none
-            border: none
-            border: 1px solid rgba(0, 0, 0, .2)
-    
+            margin-left: 16px
+            font-size: 14px
+            border-left: 1px solid rgba(0, 0, 0, 0.2)
+            border-right: 1px solid rgba(0, 0, 0, 0.2)
+            padding: 0 10px
 
-        &-field:hover,
-        &-field:focus,
-        &-field:focus-visible 
-            border: 1px solid rgba(0, 0, 0, .5)
-    
+        .item-text-textarea
+            width: 100%
+            overflow: auto
+            resize: none
+            height: 100px
+            font-size: 14px
+            line-height: 18px
+            padding: 4px 16px
+            border: 1px solid rgba(0, 0, 0, 0.2)
+            border-radius: 10px
 
-    &-header[data-create="true"] .input .input-btn 
-        height: 100%
-        width: 100px
-        font-size: 14px
-        border-radius: 0px 10px 10px 0px
-        background-color: #222A2A
-        color: rgba(255, 255, 255, .75)
-        transition: .5s all
-    
+            &:hover,
+            &:focus,
+            &:focus-visible
+                border: 1px solid rgba(0, 0, 0, 0.5)
 
-    &-header[data-create="true"] .input .input-btn:hover 
-      background-color: #394249
-    
+            &::-webkit-scrollbar
+                width: 0px
 
-    &-header[data-create="true"] .input .input-btn:disabled 
-      opacity: .7
-    
+        /* TODO ACTIONS */
+        /* DEFAULT */
+        &[data-edit="false"] .item-body .item-actions
+            display: flex
+            margin-left: 10px
 
-    &-header[data-create="true"] .input .input-btn:disabled:hover 
-      background-color: #222A2A
-      opacity: .7
-    
+            .btn
+                width: 40px
+                height: 100%
+                &-icon svg
+                    width: 20px
+                    height: 20px
 
+            .accent svg,
+            .warning svg
+                fill: rgba(0, 0, 0, 0.5)
+                transition: .5s all
 
-    /* TODO LIST */
-    &-list 
-      height: auto
-      width: 100%
-      padding: 10px
-      margin: 20px 0px
-      border-top: 1px solid rgba(0, 0, 0, .2)
-    
-    &-item 
-      border: 1px solid rgba(0, 0, 0, .2)
-      border-radius: 10px
-      margin: 5px 0px
-      padding: 10px
-    
-    &-item[data-closed="true"] 
-      opacity: .5
-    
-    &-item[data-clicked="true"] 
-      opacity: 1
-      box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, .2)
-    
+            .accent
+                svg:hover
+                    fill: #FFA500
 
-    &-item:hover 
-      box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, .2)
-    
-
-    &-item .item-header 
-      display: flex
-      justify-content: space-between
-      align-items: center
-      font-size: 12px
-      border-bottom: 1px solid rgba(0, 0, 0, .2) 
-      height: 24px
-    
-    &-item .item-body 
-      display: flex
-      align-items: center
-      padding: 10px
-    
+            .warning
+                svg:hover
+                    fill: #FE2712
 
 
-    /* TODO CHECK */
-    &-item .item-body .item-check 
-      height: 24px 
-      width: 24px
-      min-width: 24px
-      border: 1px solid rgba(0, 0, 0, .2)
-      border-radius: 5px
-    
+        /* TODO ACTIONS */
+        /* EDIT */
+        &[data-edit="true"] .item-body .item-actions
+            display: flex
+            margin-left: 10px
 
-    /* TODO TEXT */
-    /* DEFAULT */
+            .btn
+                width: 40px
+                height: 100px
+                background-color: #222A2A
+                border-radius: 10px
+                &-icon svg
+                    width: 20px
+                    height: 20px
+                    fill: rgba(255, 255, 255, 0.75)
 
-    &-item[data-edit="false"] .item-body .item-text 
-      margin-left: 16px
-      font-size: 14px
-      border-left: 1px solid rgba(0, 0, 0, .2)
-      border-right: 1px solid rgba(0, 0, 0, .2)
-      padding: 0 10px
-    
+                &:hover
+                    background-color: #394249
 
-
-    /* TODO TEXT */
-    /* EDIT */
-    &-item[data-edit="true"] .item-body .item-text 
-      width: 100%
-      margin-left: 16px
-      font-size: 14px
-      border-left: 1px solid rgba(0, 0, 0, .2)
-      border-right: 1px solid rgba(0, 0, 0, .2)
-      padding: 0 10px
-    
-
-    &-item[data-edit="true"] .item-body .item-text .item-text-textarea 
-      width: 100%
-      overflow: auto
-      resize: none
-      height: 100px
-      font-size: 14px
-      line-height: 18px
-      padding: 4px 16px
-      border: 1px solid rgba(0, 0, 0, .2)
-      border-radius: 10px
-    
-
-    &-item[data-edit="true"] .item-body .item-text .item-text-textarea:hover,
-    &-item[data-edit="true"] .item-body .item-text .item-text-textarea:focus,
-    &-item[data-edit="true"] .item-body .item-text .item-text-textarea:focus-visible 
-      border: 1px solid rgba(0, 0, 0, .5)
-    
-
-    &-item[data-edit="true"] .item-body .item-text .item-text-textarea::-webkit-scrollbar 
-      width: 0px
-    
-
-
-    /* TODO ACTIONS */
-    /* DEFAULT */
-    &-item[data-edit="false"] .item-body .item-actions 
-      display: flex
-      margin-left: 10px
-    
-    &-item[data-edit="false"] .item-body .item-actions .btn 
-      width:  40px
-      height: 100%
-    
-
-    &-item[data-edit="false"] .item-body .item-actions .accent svg,
-    &-item[data-edit="false"] .item-body .item-actions .warning svg 
-      fill:rgba(0, 0, 0, .5)
-      transition: .5s all
-    
-    &-item[data-edit="false"] .item-body .item-actions .accent svg:hover 
-      fill: #FFA500
-    
-    &-item[data-edit="false"] .item-body .item-actions .warning svg:hover 
-      fill: #FE2712
-    
-
-    &-item[data-edit="false"] .item-body .item-actions .btn .btn-icon  svg 
-      width: 20px
-      height: 20px
-    
-
-
-
-    /* TODO ACTIONS */
-    /* EDIT */
-    &-item[data-edit="true"] .item-body .item-actions 
-      display: flex
-      margin-left: 10px
-    
-
-    &-item[data-edit="true"] .item-body .item-actions .btn 
-      width: 40px
-      height: 100px
-      background-color: #222A2A
-      border-radius: 10px
-    
-
-    &-item[data-edit="true"] .item-body .item-actions .btn:hover 
-      background-color: #394249
-    
-
-    &-item[data-edit="true"] .item-body .item-actions .btn .btn-icon svg 
-      width: 20px
-      height: 20px
-      fill: rgba(255, 255, 255, .75)
-  

@@ -20,12 +20,6 @@ const Auth = () => {
                         autoComplete='off'
                         placeholder='Password'
                     />
-                    <Input
-                        id='password'
-                        type='password'
-                        autoComplete='off'
-                        placeholder='Password'
-                    />
                 </div>
                 
                 <button type='button' className='btn'>
