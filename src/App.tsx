@@ -3,8 +3,8 @@ import 'styles/index.css'
 
 const App = () => {
     return (
-        <div>
-           <Auth />
+        <div className="page">
+            <Auth />
         </div>
     )
 }
