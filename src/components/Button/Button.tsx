@@ -4,11 +4,13 @@ interface Props {
     text?: string,
     className?: string,
     classText?: string,
+    onClick: (e: any) => void,
+    disabled: boolean
 }
 
-const Button: FC<Props> = ({ text, className, classText }) => {
+const Button: FC<Props> = ({ text, className, classText, onClick, disabled }) => {
     return <>
-        <button className={className}>
+        <button disabled={disabled} onClick={onClick} className={className}>
             <span className={classText}>{text}</span>
         </button>
     </>
@@ -17,7 +19,8 @@ const Button: FC<Props> = ({ text, className, classText }) => {
 Button.defaultProps = {
     text: 'Submit',
     className: 'btn',
-    classText: '',
+    classText: 'btn-body',
+    disabled: true
 }
 
 export default Button
