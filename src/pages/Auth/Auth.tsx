@@ -1,6 +1,8 @@
-import { Input } from 'components'
+import { Button, Input } from 'components'
+import { paths } from 'core';
 
 const Auth = () => {
+    console.log(paths.register)
     return (
         <div className='auth'>
             <form className='form'>
@@ -22,12 +24,14 @@ const Auth = () => {
                     />
                 </div>
 
-                <button type='button' className='btn'>
-                    <span className='btn-body'>Sign In</span>
-                </button>
-                <a className='link' href='/register.html'>
-                    <span className='link-body'>I have not an account</span>
-                </a>
+                <Button text='Sign In' />
+                
+                <Button 
+                    className='link'
+                    classText='link-body'
+                    link={paths.register}
+                    text='I have not an account'
+                />
             </form>
         </div>
     )
