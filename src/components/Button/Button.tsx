@@ -9,7 +9,7 @@ interface Props {
     onClick?: (e: any) => void
     disabled?: boolean
     link?: string
-    type?: 'button' | 'submit' | 'reset' 
+    type?: 'button' | 'submit' | 'reset'
 }
 
 const Button: FC<Props> = ({ text, className, classText, onClick, disabled, link, type }) => {
