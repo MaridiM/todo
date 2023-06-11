@@ -1,4 +1,4 @@
-import { Button, Input } from 'components'
+import { FormFooter, FormHeader, Input } from 'components'
 import { paths } from 'core';
 
 const Auth = () => {
@@ -6,9 +6,7 @@ const Auth = () => {
     return (
         <div className='auth'>
             <form className='form'>
-                <header className='form-header'>
-                    <h3 className='form-title'>Sign In</h3>
-                </header>
+                <FormHeader text='Sign In' />
 
                 <div className='input-group'>
                     <Input
@@ -24,14 +22,8 @@ const Auth = () => {
                     />
                 </div>
 
-                <Button text='Sign In' />
+                <FormFooter />
                 
-                <Button 
-                    className='link'
-                    classText='link-body'
-                    link={paths.register}
-                    text='I have not an account'
-                />
             </form>
         </div>
     )
