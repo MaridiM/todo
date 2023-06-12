@@ -1,20 +1,22 @@
 import { Button } from 'components/Button'
-import { paths } from 'core'
+import { useLocation } from 'react-router-dom'
 
-const FormFooter = () => {
+
+const FormFooter = ({ text }) => {
+    const currentUrl = useLocation()
+
     return (
         <>
-            <Button text='Sign In' />
+            <Button text={text} />
 
             <Button
                 className='link'
                 classText='link-body'
-                link={paths.register}
-                text='I have not an account'
+                link={currentUrl.pathname}
+                text={text}
             />
         </>
     )
 }
 
 export default FormFooter
-    

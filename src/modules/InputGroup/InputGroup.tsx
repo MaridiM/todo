@@ -1,11 +1,15 @@
+import { useLocation } from 'react-router-dom'
 import LoginFields from './LoginFields'
 import RegisterFields from './RegisterFields'
 
 const InputGroup = () => {
+
+    const { pathname } = useLocation()
+
     return (
         <>
-            <LoginFields />
-            {/* <RegisterFields/> */}
+            {pathname === '/register' ? <RegisterFields /> : <LoginFields />}
+
         </>
     )
 }
