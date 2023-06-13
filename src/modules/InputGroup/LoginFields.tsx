@@ -1,14 +1,14 @@
 import { Input } from "components"
 
 
-const LoginFields = () => {
+const LoginFields = ({ onChange }) => {
     return (
         <>
-            <Input id='email'
+            <Input onChange={onChange} id='email'
                 type='email'
                 placeholder='E-Mail' />
 
-            <Input id='password'
+            <Input onChange={onChange} id='password'
                 type='password'
                 autoComplete='off'
                 placeholder='Password' />

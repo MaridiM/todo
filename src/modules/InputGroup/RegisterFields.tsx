@@ -1,22 +1,23 @@
 import { Input } from "components"
 
 
-const RegisterFields = () => {
+const RegisterFields = ({ onChange }) => {
     return (
-        <>  <Input id='full-name'
-            type='text'
-            placeholder='Full Name' />
+        <>
+            <Input onChange={onChange} id='full-name'
+                type='text'
+                placeholder='Full Name' />
 
-            <Input id='email'
+            <Input onChange={onChange} id='email'
                 type='email'
                 placeholder='E-Mail' />
 
-            <Input id='password'
+            <Input onChange={onChange} id='password'
                 type='password'
                 autoComplete='off'
                 placeholder='Password' />
 
-            <Input id='confirm-password'
+            <Input onChange={onChange} id='confirm-password'
                 type='password'
                 autoComplete='off'
                 placeholder='Confirm Password' />

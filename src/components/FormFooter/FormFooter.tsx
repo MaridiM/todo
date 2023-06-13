@@ -2,12 +2,12 @@ import { Button } from 'components/Button'
 import { useLocation } from 'react-router-dom'
 
 
-const FormFooter = ({ text }) => {
+const FormFooter = ({ text, onClick }) => {
     const currentUrl = useLocation()
 
     return (
         <>
-            <Button text={text} />
+            <Button text={text} onClick={onClick} />
 
             <Button
                 className='link'
