@@ -8,8 +8,9 @@ const Form = () => {
     const { pathname } = useLocation()
     const [form, setForm] = useState({})
 
-    const onChange = (e) => {
-        setForm({ inputValue: e.target.value })
+    const onChange = (e: any) => {
+
+        setForm({ ...form, [e.target.name]: e.target.value })
     }
 
     const onClick = () => {
