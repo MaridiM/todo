@@ -1,20 +1,13 @@
 import { FormHeader, FormFooter } from "components"
+import useForm from "hooks/useForm"
 import { InputGroup } from "modules/InputGroup"
 import { useLocation } from "react-router-dom"
-import { useState } from 'react'
+
 
 
 const Form = () => {
     const { pathname } = useLocation()
-    const [form, setForm] = useState({})
-
-    const onChange = (e: any) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
-    }
-
-    const onClick = () => {
-        console.log(form)
-    }
+    const { onChange, onClick } = useForm()
 
     return (
         <>
