@@ -1,5 +1,5 @@
 import { paths } from 'core'
-import { Auth } from 'pages'
+import { Auth, Todo } from 'pages'
 import { Routes, Route, Link } from 'react-router-dom'
 import 'styles/index.sass'
 
@@ -11,6 +11,7 @@ const App = () => {
                     <Route path={paths.login} element={<Auth />} />
                     <Route path={paths.register} element={<Auth />} />
                 </Route>
+                <Route path={paths.todo} element={<Todo />} />
                 
                 <Route path='*' element={
                     <>

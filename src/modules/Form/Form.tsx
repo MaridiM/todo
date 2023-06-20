@@ -1,5 +1,5 @@
 import { FormHeader, FormFooter } from "components"
-import useForm from "hooks/useForm"
+import { useForm } from "hooks"
 import { InputGroup } from "modules/InputGroup"
 import { useLocation } from "react-router-dom"
 

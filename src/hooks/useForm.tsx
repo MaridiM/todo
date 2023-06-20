@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function useForm() {
+export const  useForm = () =>  {
     const [form, setForm] = useState({})
 
     const onChange = (e: any) => {
