@@ -21,11 +21,23 @@ interface Props {
     type?: HTMLInputTypeAttribute
 }
 
-const Input: FC<Props> = ({ id, icon, className, autoComplete, type, name, placeholder, value, button, buttonText, onClick, disabled, disabledButton, onChange, ...args }) => {
-
-
-
-
+const Input: FC<Props> = ({
+    id,
+    icon,
+    type,
+    name,
+    value,
+    button,
+    onClick,
+    onChange,
+    disabled,
+    className,
+    buttonText,
+    placeholder,
+    autoComplete,
+    disabledButton,
+    ...args
+}) => {
     let fieldClasses = classNames(
         'input-field',
         icon && 'input-field-with-icon',
@@ -33,6 +45,7 @@ const Input: FC<Props> = ({ id, icon, className, autoComplete, type, name, place
     )
 
     disabledButton = disabled || disabledButton
+
     return (
         <div className='input'>
             {icon}

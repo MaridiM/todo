@@ -1,12 +1,14 @@
 import { FormHeader, FormFooter } from "components"
 import { paths } from "core"
 import { useForm } from "hooks"
-import { InputGroup } from "modules/InputGroup"
+import { InputGroup } from "modules"
+import { FC } from "react"
 import { useLocation } from "react-router-dom"
 
 
+interface Props {}
 
-const Form = () => {
+const Form: FC<Props> = () => {
     const { pathname } = useLocation()
     const { onChange, onClick } = useForm()
 

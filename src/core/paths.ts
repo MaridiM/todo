@@ -1,6 +1,8 @@
-export const paths: Record<string, string> = { 
+export const paths: Record<string, any> = { 
     main: '/',  
     login: '/login', 
     register: '/register', 
-    todo: '/todo'
+    todo: '/todo',
+    todoFilter: (filter: 'all' | 'opened' | 'closed' = 'all') => `/todo#${filter}`,
+    
 }
