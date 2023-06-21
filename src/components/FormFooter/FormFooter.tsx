@@ -1,9 +1,13 @@
 import { Button } from 'components/Button'
 import { paths } from 'core'
+import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 
+interface Props {
+    onClick: (e?: any) => void
+}
 
-const FormFooter = ({ onClick }) => {
+const FormFooter: FC<Props> = ({ onClick }) => {
     const { pathname } = useLocation()
 
     return (

@@ -1,12 +1,23 @@
-import { useLocation } from 'react-router-dom'
+import { FC } from 'react'
+import { paths } from 'core'
 import LoginFields from './LoginFields'
 import RegisterFields from './RegisterFields'
+import { useLocation } from 'react-router-dom'
 
-const InputGroup = ({ onChange }) => {
+
+interface Props {
+    onChange: (e: any ) => void
+}
+
+const InputGroup: FC<Props> = ({ onChange }) => {
     const { pathname } = useLocation()
     return (
         <>
-            {pathname === '/register' ? <RegisterFields onChange={onChange} /> : <LoginFields onChange={onChange} />}
+            {
+                pathname === paths.register 
+                    ? <RegisterFields onChange={onChange} />
+                    : <LoginFields onChange={onChange} />
+            }
 
         </>
     )
