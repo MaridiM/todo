@@ -1,5 +1,5 @@
 import { CheckSVG, EditSVG, SearchSVG, TrashSVG } from "assets/icons"
-import { Input } from "components"
+import { Button, Input } from "components"
 import { FC } from "react"
 
 interface Props {}
@@ -10,9 +10,7 @@ const Todo: FC<Props> = () => {
             <div className="header">
                 <header>
                     <h1>TODO LIST</h1>
-                    <a href="/index.html" className="link">
-                        <span className="link-body">Sign In</span>
-                    </a>
+                    <Button text='Logout' onClick={() => console.log("LOGOUT")} />
                 </header>
                 <Input
                     id='search'
