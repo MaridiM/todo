@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 
 
 const FormFooter = ({ onClick }) => {
-    const {pathname} = useLocation()
+    const { pathname } = useLocation()
 
     return (
         <>

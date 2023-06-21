@@ -19,9 +19,10 @@ const Button: FC<Props> = ({ text, className, classText, onClick, disabled, link
                     ? <Link to={link} className={className}>
                         <span className={classText}>{text}</span>
                     </Link>
-                    : <button type={type} disabled={disabled} onClick={onClick} className={className}>
+                    : <Link to={'/todo'}><button type={type} disabled={disabled} onClick={onClick} className={className}>
                         <span className={classText}>{text}</span>
                     </button>
+                    </Link>
             }
         </>
     )

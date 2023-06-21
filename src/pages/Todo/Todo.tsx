@@ -1,16 +1,19 @@
 import { CheckSVG, EditSVG, SearchSVG, TrashSVG } from "assets/icons"
 import { Button, Input } from "components"
 import { FC } from "react"
+import { Link } from "react-router-dom"
 
-interface Props {}
+interface Props {
+    isAuth: () => void
+}
 
-const Todo: FC<Props> = () => {
+const Todo: FC<Props> = ({ isAuth }) => {
     return (
         <div className='todo'>
             <div className="header">
                 <header>
                     <h1>TODO LIST</h1>
-                    <Button text='Logout' onClick={() => console.log("LOGOUT")} />
+                    <Link to={'/login'}><Button text='Logout' onClick={isAuth} /></Link>
                 </header>
                 <Input
                     id='search'
@@ -50,10 +53,10 @@ const Todo: FC<Props> = () => {
                             <div className="item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</div>
                             <div className="item-actions">
                                 <button type="button" className="btn accent">
-                                    <EditSVG className="btn-icon"/>
+                                    <EditSVG className="btn-icon" />
                                 </button>
                                 <button type="button" className="btn warning">
-                                    <TrashSVG className="btn-icon"/>
+                                    <TrashSVG className="btn-icon" />
                                 </button>
                             </div>
                         </div>
@@ -68,13 +71,13 @@ const Todo: FC<Props> = () => {
                             <div className="item-check">
                                 <CheckSVG className="item-check-icon" />
                             </div>
-                            <div className="item-text" style={{borderRight: 'none'}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</div>
+                            <div className="item-text" style={{ borderRight: 'none' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</div>
                             <div className="item-actions">
                                 <button type="button" className="btn accent">
-                                    <EditSVG className="btn-icon"/>
+                                    <EditSVG className="btn-icon" />
                                 </button>
                                 <button type="button" className="btn warning">
-                                    <TrashSVG className="btn-icon"/>
+                                    <TrashSVG className="btn-icon" />
                                 </button>
                             </div>
                         </div>
@@ -92,10 +95,10 @@ const Todo: FC<Props> = () => {
                             <div className="item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</div>
                             <div className="item-actions">
                                 <button type="button" className="btn accent">
-                                    <EditSVG className="btn-icon"/>
+                                    <EditSVG className="btn-icon" />
                                 </button>
                                 <button type="button" className="btn warning">
-                                    <TrashSVG className="btn-icon"/>
+                                    <TrashSVG className="btn-icon" />
                                 </button>
                             </div>
                         </div>
@@ -111,7 +114,7 @@ const Todo: FC<Props> = () => {
                             <div className="item-check">
                                 {/* <!-- <CheckSVG className="item-check-icon" /> --> */}
                             </div>
-                            <div className="item-text" style={{borderRight: 'none'}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem
+                            <div className="item-text" style={{ borderRight: 'none' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem
                                 magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat
                                 repellendus saepe dolorum accusantium.</div>
                             {/* <!-- <div className="item-actions">
@@ -144,10 +147,10 @@ const Todo: FC<Props> = () => {
                             <div className="item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</div>
                             <div className="item-actions">
                                 <button type="button" className="btn accent">
-                                    <EditSVG className="btn-icon"/>
+                                    <EditSVG className="btn-icon" />
                                 </button>
                                 <button type="button" className="btn warning">
-                                    <TrashSVG className="btn-icon"/>
+                                    <TrashSVG className="btn-icon" />
                                 </button>
                             </div>
                         </div>
@@ -162,7 +165,7 @@ const Todo: FC<Props> = () => {
                             <div className="item-check">
                                 <CheckSVG className="item-check-icon" />
                             </div>
-                            <div className="item-text" style={{borderRight: 'none'}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</div>
+                            <div className="item-text" style={{ borderRight: 'none' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</div>
                             {/* <!-- <div className="item-actions">
                                 <button type="button" className="btn accent">
                                     <EditSVG className="btn-icon"/>
@@ -186,10 +189,10 @@ const Todo: FC<Props> = () => {
                             <div className="item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</div>
                             <div className="item-actions">
                                 <button type="button" className="btn accent">
-                                    <EditSVG className="btn-icon"/>
+                                    <EditSVG className="btn-icon" />
                                 </button>
                                 <button type="button" className="btn warning">
-                                    <TrashSVG className="btn-icon"/>
+                                    <TrashSVG className="btn-icon" />
                                 </button>
                             </div>
                         </div>
@@ -205,7 +208,7 @@ const Todo: FC<Props> = () => {
                             <div className="item-check">
                                 {/* <!-- <CheckSVG className="item-check-icon" /> --> */}
                             </div>
-                            <div className="item-text" style={{borderRight: 'none'}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem
+                            <div className="item-text" style={{ borderRight: 'none' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem
                                 magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat
                                 repellendus saepe dolorum accusantium.</div>
                             {/* <!-- <div className="item-actions">

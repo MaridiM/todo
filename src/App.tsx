@@ -9,6 +9,7 @@ import 'styles/index.sass'
 
 const App = () => {
     const [isAuth, setIsAuth] = useState(false);
+    console.log(isAuth);
 
     return (
         <div className="page">
@@ -17,7 +18,7 @@ const App = () => {
                     <Route path={paths.login} element={<Auth isAuth={() => setIsAuth(true)} />} />
                     <Route path={paths.register} element={<Auth isAuth={() => setIsAuth(true)} />} />
                 </Route>}
-                {isAuth && <Route path={paths.todo} element={<Todo />} />}
+                {isAuth && <Route path={paths.todo} element={<Todo isAuth={() => setIsAuth(false)} />} />}
 
 
                 <Route path='*' element={

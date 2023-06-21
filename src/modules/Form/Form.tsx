@@ -20,7 +20,7 @@ const Form: FC<Props> = ({ isAuth }) => {
             <form className='form'>
                 <FormHeader text={pathname === paths.register ? 'Sign Up' : 'Sign In'} />
                 <InputGroup onChange={onChange} />
-                <FormFooter onClick={() => { onClick(); isAuth() }} text={pathname === '/register' ? 'Sign Up' : 'Sign In'} />
+                <FormFooter onClick={() => { onClick(); isAuth() }} />
             </form>
         </>
     )
