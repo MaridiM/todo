@@ -1,9 +1,14 @@
 import { Form } from 'modules'
+import { FC } from 'react'
 
-const Auth = () => {
+interface Props {
+    isAuth: () => void
+}
+
+const Auth: FC<Props> = ({ isAuth }) => {
     return (
         <div className='auth'>
-            <Form />
+            <Form isAuth={isAuth} />
         </div>
     )
 }

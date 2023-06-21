@@ -2,10 +2,15 @@ import { FormHeader, FormFooter } from "components"
 import { useForm } from "hooks"
 import { InputGroup } from "modules/InputGroup"
 import { useLocation } from "react-router-dom"
+import { FC } from 'react'
+
+interface Props {
+    isAuth: () => void
+}
 
 
 
-const Form = () => {
+const Form: FC<Props> = ({ isAuth }) => {
     const { pathname } = useLocation()
     const { onChange, onClick } = useForm()
 
@@ -14,7 +19,7 @@ const Form = () => {
             <form className='form'>
                 <FormHeader text={pathname === '/register' ? 'Sign Up' : 'Sign In'} />
                 <InputGroup onChange={onChange} />
-                <FormFooter onClick={onClick} text={pathname === '/register' ? 'Sign Up' : 'Sign In'} />
+                <FormFooter onClick={() => { onClick(); isAuth() }} text={pathname === '/register' ? 'Sign Up' : 'Sign In'} />
             </form>
         </>
     )
