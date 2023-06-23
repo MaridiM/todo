@@ -3,39 +3,56 @@ import { Checkbox } from 'components/Checkbox'
 import { FC, useState } from 'react'
 import { useEffect } from 'react'
 
+
 interface Props {
     checked: boolean
+    id: number
+    text: string
+    closed: boolean
+    createdAt: string
+    updatedAt: string
+
 }
 
-const TodoItem: FC<Props> = ({ checked }) => {
+const TodoItem: FC<Props> = ({ checked, id, text, closed, createdAt, updatedAt }) => {
+
+
     const [checkedItem, setChecked] = useState<boolean>(false)
+    const [editedItem, setEdited] = useState<boolean>(false)
+    const [clickedItem, setClicked] = useState(false);
+
 
     useEffect(() => {
+        if (checked !== checkedItem) {
+            checked = checkedItem;
+        }
         setChecked(checked)
-    }, [checked])
+    }, [checked, checkedItem])
+
+    console.log(checked);
 
     return (
-        <div className="todo-item" data-closed="false" data-clicked="false" data-edit="false">
+        <div onClick={() => { }} className="todo-item" data-closed={checkedItem} data-clicked={clickedItem} data-edit={editedItem}>
             <header className="item-header">
-                <span className="item-id">#123456</span>
-                <span className="item-date">21:32:44 23.12.2022</span>
+                <span className="item-id">#{id}</span>
+                <span className="item-date">{createdAt}</span>
             </header>
             <div className="item-body">
-                
-                <Checkbox checked={checkedItem} onClick={setChecked}/>
+
+                <Checkbox checked={checkedItem} onClick={setChecked} />
 
                 <div className="item-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.
-                    {/* <textarea className="item-text-textarea" name="edit_task" id="edit_task">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dignissimos porro quidem magni assumenda veniam nostrum dolorem soluta blanditiis voluptatum nam incidunt optio, eum itaque quaerat repellendus saepe dolorum accusantium.</textarea> */}
+
+                    {editedItem ? <textarea className="item-text-textarea" name="edit_task" id="edit_task" defaultValue={text}></textarea> : text}
+
                 </div>
                 <div className="item-actions">
-                    {/* <button type="button" className="btn accent edit"> */}
-                    <button type="button" className="btn accent">
+                    <button onClick={!checkedItem ? () => setEdited(!editedItem) : () => setEdited(false)} type="button" className={'btn accent'}>
                         <EditSVG className="btn-icon" />
                     </button>
-                    <button type="button" className="btn warning">
+                    {!editedItem && <button type="button" className="btn warning">
                         <TrashSVG className="btn-icon" />
-                    </button>
+                    </button>}
                 </div>
             </div>
         </div>

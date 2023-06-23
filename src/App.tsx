@@ -9,7 +9,6 @@ import 'styles/index.sass'
 
 const App = () => {
     const [isAuth, setIsAuth] = useState(false);
-    console.log(isAuth);
 
     return (
         <div className="page">
