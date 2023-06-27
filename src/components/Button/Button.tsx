@@ -22,7 +22,6 @@ const Button: FC<Props> = ({ text, className, classText, onClick, disabled, link
                     : <button type={type} disabled={disabled} onClick={onClick} className={className}>
                         <span className={classText}>{text}</span>
                     </button>
-
             }
         </>
     )
