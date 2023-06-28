@@ -44,8 +44,12 @@ const Todos: FC<Props> = () => {
 
     return (
         <div className="todo-list">
-
-            {todos.map((item, index) => <TodoItem key={index} checked={false} id={item.id} text={item.text} closed={item.closed} createdAt={item.createdAt.toLocaleString('en', { hour12: false })} updatedAt={item.updatedAt.toLocaleString('en', { hour12: false })} />)}
+            {
+                todos.map((item, index) => <TodoItem 
+                    key={index}
+                    data={item}
+                />)
+            }
 
 
         </div>

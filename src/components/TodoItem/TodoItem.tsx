@@ -5,16 +5,10 @@ import { useEffect } from 'react'
 
 
 interface Props {
-    checked: boolean
-    id: number
-    text: string
-    closed: boolean
-    createdAt: string
-    updatedAt: string
-
+    data: any
 }
 
-const TodoItem: FC<Props> = ({ checked, id, text, closed, createdAt, updatedAt }) => {
+const TodoItem: FC<Props> = ({ data: {id, text, closed, updatedAt } }) => {
 
 
     const [checkedItem, setChecked] = useState<boolean>(false)
@@ -24,17 +18,17 @@ const TodoItem: FC<Props> = ({ checked, id, text, closed, createdAt, updatedAt }
 
 
     useEffect(() => {
-        if (checked !== checkedItem) {
-            checked = checkedItem;
+        if (closed !== checkedItem) {
+            closed = checkedItem;
         }
-        setChecked(checked)
-    }, [checked, checkedItem])
+        setChecked(closed)
+    }, [checkedItem])
 
     return (
         <div className="todo-item" data-closed={checkedItem} data-clicked={clickedItem} data-edit={editedItem}>
             <header className="item-header" onClick={checkedItem ? () => setClicked(false) : () => setClicked(!clickedItem)}>
                 <span className="item-id">#{id}</span>
-                <span className="item-date">{createdAt}</span>
+                <span className="item-date">{updatedAt.toLocaleString('en', { hour12: false })}</span>
             </header>
             <div className="item-body" >
                 <Checkbox checked={checkedItem} onClick={setChecked} />
