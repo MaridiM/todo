@@ -14,42 +14,42 @@ interface Todo {
 const todosData = [
     {
         id: 1,
-        text: '1',
+        text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
         closed: true,
         createdAt: new Date(),
         updatedAt: new Date(),
     },
     {
         id: 2,
-        text: '2',
+        text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
         closed: true,
         createdAt: new Date(),
         updatedAt: new Date(),
     },
     {
         id: 3,
-        text: '3',
+        text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
         closed: false,
         createdAt: new Date(),
         updatedAt: new Date(),
     },
     {
         id: 4,
-        text: '4',
+        text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
         closed: false,
         createdAt: new Date(),
         updatedAt: new Date(),
     },
     {
         id: 5,
-        text: '5',
+        text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
         closed: false,
         createdAt: new Date(),
         updatedAt: new Date(),
     },
 ]
 const Todos: FC<Props> = () => {
-    const [todos, setTodos] = useState<Todo[]>(todosData)
+    const [todos, setTodos] = useState<Todo[]>([])
     
     useEffect(() => {
         // Set todos from database
