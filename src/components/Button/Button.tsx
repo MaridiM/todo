@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 interface Props {
@@ -9,18 +9,26 @@ interface Props {
     disabled?: boolean
     link?: string
     type?: 'button' | 'submit' | 'reset'
+    children?: ReactNode
+    icon?: ReactNode
 }
 
-const Button: FC<Props> = ({ text, className, classText, onClick, disabled, link, type }) => {
+const Button: FC<Props> = ({ text, className, classText, onClick, disabled, link, type, children, icon }) => {
     return (
         <>
             {
                 link
                     ? <Link to={link} className={className}>
-                        <span className={classText}>{text}</span>
+                        {icon || icon}
+                        {
+                            (text || children) && <span className={classText}>{text || children}</span>
+                        }
                     </Link>
                     : <button type={type} disabled={disabled} onClick={onClick} className={className}>
-                        <span className={classText}>{text}</span>
+                        {icon || icon}
+                        {
+                            (text || children) && <span className={classText}>{text || children}</span>
+                        }
                     </button>
             }
         </>
@@ -28,7 +36,6 @@ const Button: FC<Props> = ({ text, className, classText, onClick, disabled, link
 };
 
 Button.defaultProps = {
-    text: 'Submit',
     type: 'button',
     className: 'btn',
     classText: 'btn-body',
