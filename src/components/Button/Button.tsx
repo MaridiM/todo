@@ -19,13 +19,13 @@ const Button: FC<Props> = ({ text, className, classText, onClick, disabled, link
             {
                 link
                     ? <Link to={link} className={className}>
-                        {icon || icon}
+                        {icon && icon}
                         {
                             (text || children) && <span className={classText}>{text || children}</span>
                         }
                     </Link>
                     : <button type={type} disabled={disabled} onClick={onClick} className={className}>
-                        {icon || icon}
+                        {icon && icon}
                         {
                             (text || children) && <span className={classText}>{text || children}</span>
                         }

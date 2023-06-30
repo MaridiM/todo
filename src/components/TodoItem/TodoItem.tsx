@@ -2,13 +2,14 @@ import { EditSVG, TrashSVG } from 'assets/icons'
 import { Button } from 'components'
 import { Checkbox } from 'components/Checkbox'
 import { FC, useEffect, useState } from 'react'
+import { Todo } from 'types'
 
 
 interface Props {
     checkedTodo: (id: number) => void
     editTodo: (id: number, text: string) => void 
     deleteTodo: (id: number) => void
-    data: any
+    data: Todo
 }
 
 const TodoItem: FC<Props> = ({ checkedTodo, editTodo, deleteTodo, data: {id, text, closed, updatedAt } }) => {
@@ -16,11 +17,14 @@ const TodoItem: FC<Props> = ({ checkedTodo, editTodo, deleteTodo, data: {id, tex
 
     const [edit, setEdit] = useState<boolean>(false)
     const [clicked, setClicked] = useState(false)
+    const [changed, setChanged] = useState(false)
     const [changedText, setChangedText] = useState('')
 
     useEffect(() => {
         setChangedText(text)
-    }, [text])
+        setChanged(closed)
+        setClicked(false)
+    }, [changed, closed, text])
 
     /**
      * On Click item
@@ -30,12 +34,12 @@ const TodoItem: FC<Props> = ({ checkedTodo, editTodo, deleteTodo, data: {id, tex
      * On Edit item
     */
     const onEditItem = () => {
-
         !closed ? setEdit(!edit) : setEdit(false)
         edit && editTodo(id, changedText)
     }
+
     return (
-        <div className="todo-item" data-closed={closed} data-clicked={clicked} data-edit={edit} onClick={onClickItem}>
+        <div className="todo-item" data-closed={changed} data-clicked={clicked} data-edit={edit} onClick={onClickItem}>
             <header className="item-header">
                 <span className="item-id">#{id}</span>
                 <span className="item-date">{updatedAt.toLocaleString('en', { hour12: false })}</span>
