@@ -1,10 +1,12 @@
 import { Button, Input } from "components"
 import { FC, useState } from "react"
 
-interface Props {}
+interface Props { addTodo: (text: string) => void }
 
-const AddTodo: FC<Props> = () => {
-    const [isCreate, setIsCreate] = useState<boolean>(false) 
+const AddTodo: FC<Props> = ({ addTodo }) => {
+    const [isCreate, setIsCreate] = useState<boolean>(false)
+    const [inputText, setInputText] = useState('')
+
     /*
         TODO: Button text 
             - установить на кнопку дефолтный  текст 'Add Todo'
@@ -20,14 +22,16 @@ const AddTodo: FC<Props> = () => {
     return (
         <header className="todo-header" data-create={isCreate}>
             {
-                !isCreate 
+                !isCreate
                     ? <Button text='Add task' onClick={() => setIsCreate(true)} />
                     : <Input
-                            id='create_task'
-                            buttonText='Add task'
-                            placeholder='Input your new task'
-                            button
-                            onClick={() => setIsCreate(false)}
+                        id='create_task'
+                        onChange={(e) => setInputText(e.target.value)}
+                        value={inputText}
+                        buttonText={inputText ? 'Add task' : 'Cancel'}
+                        placeholder='Input your new task'
+                        button
+                        onClick={!inputText ? () => setIsCreate(false) : () => { addTodo(inputText); setIsCreate(false); }}
                     />
             }
         </header>

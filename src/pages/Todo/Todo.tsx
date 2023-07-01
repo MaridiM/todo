@@ -10,7 +10,7 @@ interface Props {
 const todosData: ITodo[] = [
     {
         id: 1,
-        text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
+        text: 'Dorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
         closed: true,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -45,13 +45,12 @@ const todosData: ITodo[] = [
     },
 ]
 
+
 const Todo: FC<Props> = ({ isAuth }) => {
     const [todos, setTodos] = useState<ITodo[]>([])
 
-    /*
-        TODO: Добавить addTodo 
-            добавляет в масив todosData обьект с todo
-    */
+    //console.log(todos);
+
 
     useEffect(() => {
         // Set todos from database
@@ -61,6 +60,7 @@ const Todo: FC<Props> = ({ isAuth }) => {
     /**
         Chacked a Todo 
     */
+
     const checkedTodo = (id: number): void => {
         const updated = todos.map(todo => {
             if (todo.id === id) {
@@ -91,13 +91,36 @@ const Todo: FC<Props> = ({ isAuth }) => {
         setTodos(updated)
     }
 
+    /*
+        TODO: Добавить addTodo 
+            добавляет в масив todosData обьект с todo
+    */
+
+    const addTodo = (text: string) => {
+
+        const updated = todos.map(item => {
+            item.id = item.id + 1;
+            return item
+        });
+
+        setTodos([{
+            id: 1,
+            text,
+            closed: false,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        }, ...updated]);
+
+        console.log(todos);
+    }
+
     return (
         <div className='page'>
             <Header isAuth={isAuth} />
 
             <div className="todo">
-                <AddTodo />
-                <Todos 
+                <AddTodo addTodo={addTodo} />
+                <Todos
                     todos={todos}
                     checkedTodo={checkedTodo}
                     editTodo={editTodo}
