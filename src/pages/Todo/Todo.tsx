@@ -98,18 +98,13 @@ const Todo: FC<Props> = ({ isAuth }) => {
 
     const addTodo = (text: string) => {
 
-        const updated = todos.map(item => {
-            item.id = item.id + 1;
-            return item
-        });
-
         setTodos([{
-            id: 1,
+            id: todos.length + 1,
             text,
             closed: false,
             createdAt: new Date(),
             updatedAt: new Date(),
-        }, ...updated]);
+        }, ...todos]);
 
         console.log(todos);
     }
