@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react"
 import { Header, Todos } from "modules"
 import { AddTodo } from "components"
 import { Todo as ITodo } from "types"
+import { Modal } from "modules/Modal"
 
 interface Props {
     isAuth: () => void
@@ -48,18 +49,21 @@ const todosData: ITodo[] = [
 
 const Todo: FC<Props> = ({ isAuth }) => {
     const [todos, setTodos] = useState<ITodo[]>([])
+    const [isOpenModal, setIsOpenModal] = useState(false)
+    const [deletedId, setDeletedId] = useState(null)
 
-    //console.log(todos);
+    const openModal = () => {
+        setIsOpenModal(true)
+    }
 
+    const closeModal = () => {
+        setIsOpenModal(false)
+    }
 
     useEffect(() => {
-        // Set todos from database
         setTodos(todosData)
     }, [])
 
-    /**
-        Chacked a Todo 
-    */
 
     const checkedTodo = (id: number): void => {
         const updated = todos.map(todo => {
@@ -70,9 +74,7 @@ const Todo: FC<Props> = ({ isAuth }) => {
         })
         setTodos(updated)
     }
-    /**
-     * Edit a Todo
-     */
+
     const editTodo = (id: number, text: string): void => {
         const updated = todos.map(todo => {
             if (todo.id === id) {
@@ -83,18 +85,11 @@ const Todo: FC<Props> = ({ isAuth }) => {
 
         setTodos(updated)
     }
-    /**
-     * Delete a Todo
-     */
+
     const deleteTodo = (id: number): void => {
         const updated = todos.filter(todo => todo.id !== id && todo)
         setTodos(updated)
     }
-
-    /*
-        TODO: Добавить addTodo 
-            добавляет в масив todosData обьект с todo
-    */
 
     const addTodo = (text: string) => {
 
@@ -119,8 +114,10 @@ const Todo: FC<Props> = ({ isAuth }) => {
                     todos={todos}
                     checkedTodo={checkedTodo}
                     editTodo={editTodo}
-                    deleteTodo={deleteTodo}
+                    openModal={openModal}
+                    setDeletedItem={setDeletedId}
                 />
+                {isOpenModal && <Modal close={closeModal} active={isOpenModal} confirmDelete={() => deleteTodo(deletedId)} />}
             </div>
         </div>
     )

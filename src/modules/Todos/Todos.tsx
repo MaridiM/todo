@@ -5,20 +5,24 @@ import { Todo } from 'types'
 interface Props {
     checkedTodo: (id: number) => void
     editTodo: (id: number, text: string) => void
-    deleteTodo: (id: number) => void
+    openModal: () => void
+    setDeletedItem: (id: number) => void
     todos: Todo[]
 }
 
-const Todos: FC<Props> = ({ todos, checkedTodo, editTodo, deleteTodo }) => {
+const Todos: FC<Props> = ({ todos, checkedTodo, editTodo, openModal, setDeletedItem }) => {
     return (
         <div className="todo-list">
             {
-                todos.map((item, index) => <TodoItem 
+                todos.map((item, index) => <TodoItem
                     key={index}
                     checkedTodo={checkedTodo}
                     editTodo={editTodo}
-                    deleteTodo={deleteTodo}
+
                     data={item}
+                    openModal={openModal}
+                    setDeletedItem={setDeletedItem}
+
                 />)
             }
 

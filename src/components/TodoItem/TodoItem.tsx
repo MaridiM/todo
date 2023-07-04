@@ -7,12 +7,13 @@ import { Todo } from 'types'
 
 interface Props {
     checkedTodo: (id: number) => void
-    editTodo: (id: number, text: string) => void 
-    deleteTodo: (id: number) => void
+    editTodo: (id: number, text: string) => void
+    openModal: () => void
+    setDeletedItem: (id: number) => void
     data: Todo
 }
 
-const TodoItem: FC<Props> = ({ checkedTodo, editTodo, deleteTodo, data: {id, text, closed, updatedAt } }) => {
+const TodoItem: FC<Props> = ({ checkedTodo, editTodo, openModal, setDeletedItem, data: { id, text, closed, updatedAt } }) => {
 
 
     const [edit, setEdit] = useState<boolean>(false)
@@ -26,13 +27,9 @@ const TodoItem: FC<Props> = ({ checkedTodo, editTodo, deleteTodo, data: {id, tex
         setClicked(false)
     }, [changed, closed, text])
 
-    /**
-     * On Click item
-    */
+
     const onClickItem = () => closed ? setClicked(false) : setClicked(!clicked)
-    /**
-     * On Edit item
-    */
+
     const onEditItem = () => {
         !closed ? setEdit(!edit) : setEdit(false)
         edit && editTodo(id, changedText)
@@ -49,30 +46,30 @@ const TodoItem: FC<Props> = ({ checkedTodo, editTodo, deleteTodo, data: {id, tex
 
                 <div className="item-text">
                     {
-                        edit 
+                        edit
                             ? <textarea
                                 className="item-text-textarea"
                                 name="edit_task"
                                 id="edit_task"
                                 value={changedText}
                                 onChange={(e) => setChangedText(e.target.value)}>
-                            </textarea> 
-                        : changedText
+                            </textarea>
+                            : changedText
                     }
                 </div>
 
                 <div className="item-actions">
                     {
-                        !closed && 
-                            <Button 
-                                onClick={onEditItem}
-                                className={'btn accent'}
-                                icon={<EditSVG className="btn-icon" />}
-                            />
+                        !closed &&
+                        <Button
+                            onClick={onEditItem}
+                            className={'btn accent'}
+                            icon={<EditSVG className="btn-icon" />}
+                        />
                     }
                     {
                         !edit && <Button
-                            onClick={() => deleteTodo(id)}
+                            onClick={() => { openModal(); setDeletedItem(id) }}
                             className={'btn warning'}
                             icon={<TrashSVG className="btn-icon" />}
                         />
