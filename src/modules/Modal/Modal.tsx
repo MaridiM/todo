@@ -6,15 +6,19 @@ interface Props {
     close: () => void
     confirmDelete: () => void
     active: Boolean
+    id: number
 }
 
-const Modal: FC<Props> = ({ close, confirmDelete, active }) => {
+const Modal: FC<Props> = ({ close, confirmDelete, active, id }) => {
     return (
-        <div onClick={close} className='modal'>
-            <div onClick={e => e.stopPropagation()} className='modal-content'>
-                <h1 className='modal-title'>Are you sure?</h1>
-                <Button className='btn' text='Delete task' onClick={() => { close(); confirmDelete() }} />
-                <Button className='btn' text='Cancel' onClick={() => close()} />
+        <div onClick={close} className='modal-wrapper'>
+            <div onClick={e => e.stopPropagation()} className='modal'>
+                <h1 className='modal-title'>Delete item #{id}?</h1>
+                <p className='modal-text'>Are you sure, want to delete this item?</p>
+                <div className="modal-btns">
+                    <Button className='btn' text='Delete' onClick={() => { close(); confirmDelete() }} />
+                    <Button className='modal-cancel' text='Cancel' onClick={() => close()} />
+                </div>
             </div>
         </div>
     );

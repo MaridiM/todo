@@ -117,7 +117,14 @@ const Todo: FC<Props> = ({ isAuth }) => {
                     openModal={openModal}
                     setDeletedItem={setDeletedId}
                 />
-                {isOpenModal && <Modal close={closeModal} active={isOpenModal} confirmDelete={() => deleteTodo(deletedId)} />}
+                {
+                    isOpenModal && <Modal
+                        close={closeModal}
+                        active={isOpenModal}
+                        confirmDelete={() => deleteTodo(deletedId)}
+                        id={deletedId} 
+                    />
+                }
             </div>
         </div>
     )
