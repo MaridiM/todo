@@ -1,35 +1,31 @@
-import { paths } from 'core'
-import { Auth, Error404, Todo } from 'pages'
-import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
-
-import 'styles/index.sass'
-
+import { paths } from 'core';
+import { Auth, Error404, Todo } from 'pages';
+import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import 'styles/index.sass';
 
 
 const App = () => {
-    const [isAuth, setIsAuth] = useState(true)
-
+    const isAuthRedux = useSelector((state : any) => state.utilitiesReducer.isAuth);
     return (
-        <div className="page">
+        <div className='page'>
             <Routes>
-                {
-                    !isAuth && <Route path={paths.main} element={<Auth isAuth={() => setIsAuth(true)} />}>
-                        <Route path={paths.login} element={<Auth isAuth={() => setIsAuth(true)} />} />
-                        <Route path={paths.register} element={<Auth isAuth={() => setIsAuth(true)} />} />
+                {!isAuthRedux && (
+                    <Route path={paths.main} element={<Auth />}>
+                        <Route path={paths.login} element={<Auth />} />
+                        <Route path={paths.register} element={<Auth />} />
                     </Route>
-                }
-                {
-                    isAuth && <Route path={paths.main} element={<Todo isAuth={() => setIsAuth(false)} />}>
-                        <Route path={paths.todo} element={<Todo isAuth={() => setIsAuth(false)} />} />
+                )}
+                {isAuthRedux && (
+                    <Route path={paths.main} element={<Todo />}>
+                        <Route path={paths.todo} element={<Todo />} />
                     </Route>
-                }
-
+                )}
 
                 <Route path='*' element={<Error404 />} />
             </Routes>
         </div>
-    )
-}
+    );
+};
 
-export default App
+export default App;

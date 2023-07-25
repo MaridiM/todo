@@ -1,28 +1,17 @@
-import { FC } from 'react'
 import { TodoItem } from 'components'
-import { Todo } from 'types'
+import { useSelector } from "react-redux"
 
-interface Props {
-    checkedTodo: (id: number) => void
-    editTodo: (id: number, text: string) => void
-    openModal: () => void
-    setDeletedItem: (id: number) => void
-    todos: Todo[]
-}
 
-const Todos: FC<Props> = ({ todos, checkedTodo, editTodo, openModal, setDeletedItem }) => {
+const Todos = () => {
+    
+    const todosRedux = useSelector((state: any) => state.todosReducer.todos)
+
     return (
         <div className="todo-list">
             {
-                todos.map((item, index) => <TodoItem
+                todosRedux.map((item, index) => <TodoItem
                     key={index}
-                    checkedTodo={checkedTodo}
-                    editTodo={editTodo}
-
                     data={item}
-                    openModal={openModal}
-                    setDeletedItem={setDeletedItem}
-
                 />)
             }
 

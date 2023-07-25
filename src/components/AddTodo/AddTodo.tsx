@@ -1,9 +1,11 @@
 import { Button, Input } from "components"
-import { FC, useState } from "react"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addTodoRedux } from "redux/slices/todosSlice"
 
-interface Props { addTodo: (text: string) => void }
 
-const AddTodo: FC<Props> = ({ addTodo }) => {
+const AddTodo = () => {
+    const dispatch = useDispatch()
     const [isCreate, setIsCreate] = useState<boolean>(false)
     const [inputText, setInputText] = useState('')
 
@@ -31,7 +33,7 @@ const AddTodo: FC<Props> = ({ addTodo }) => {
                         buttonText={inputText ? 'Add task' : 'Cancel'}
                         placeholder='Input your new task'
                         button
-                        onClick={!inputText ? () => setIsCreate(false) : () => { addTodo(inputText); setIsCreate(false); }}
+                        onClick={!inputText ? () => setIsCreate(false) : () => { dispatch(addTodoRedux(inputText)); setIsCreate(false); }}
                     />
             }
         </header>

@@ -1,15 +1,16 @@
 import { CheckSVG } from "assets/icons"
-import { Dispatch, FC, SetStateAction } from "react"
+import { FC } from "react"
+
 
 interface Props {
     checked: boolean
-    onClick: Dispatch<SetStateAction<boolean>>
+    checkedTodo: () => void
 }
 
-const Checkbox: FC<Props> = ({ checked, onClick }) => {
+const Checkbox: FC<Props> = ({ checked, checkedTodo }) => {
 
     return (
-        <div className="item-check" onClick={() => onClick(!checked)}>
+        <div className="item-check" onClick={() => checkedTodo()}>
             {
                 checked && <CheckSVG className="item-check-icon" />
             }

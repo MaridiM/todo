@@ -1,15 +1,10 @@
 import { SearchSVG } from "assets/icons"
 import { Filter, HeaderTitle, Input } from "components"
-import { FC } from "react"
 
-interface Props {
-    isAuth: () => void
-}
-
-const Header: FC<Props> = ({ isAuth }) => {
+const Header = () => {
     return (
         <div className="header">
-            <HeaderTitle isAuth={isAuth} />
+            <HeaderTitle/>
             <Input
                 id='search'
                 icon={<SearchSVG className='input-icon' />}

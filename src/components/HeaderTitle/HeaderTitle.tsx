@@ -1,17 +1,14 @@
 import { Button } from "components/Button"
-import { FC } from "react"
 import { Link } from "react-router-dom"
+import { useDispatch } from 'react-redux'
+import { setAuth } from 'redux/slices/utilitiesSlice'
 
-
-interface Props {
-    isAuth: () => void
-}
-
-const HeaderTitle: FC<Props> = ({ isAuth }) => {
+const HeaderTitle = () => {
+    const dispatch = useDispatch();
     return (
         <header>
             <h1>TODO LIST</h1>
-            <Link to={'/login'}><Button text='Logout' onClick={isAuth} /></Link>
+            <Link to={'/login'}><Button text='Logout' onClick={() => dispatch(setAuth(false))} /></Link>
         </header>
     )
 }

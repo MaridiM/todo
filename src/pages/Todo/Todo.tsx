@@ -1,12 +1,11 @@
-import { FC, useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Header, Todos } from "modules"
 import { AddTodo } from "components"
 import { Todo as ITodo } from "types"
 import { Modal } from "modules/Modal"
+import { useSelector, useDispatch } from "react-redux"
+import { setTodosRedux } from "redux/slices/todosSlice"
 
-interface Props {
-    isAuth: () => void
-}
 
 const todosData: ITodo[] = [
     {
@@ -47,83 +46,23 @@ const todosData: ITodo[] = [
 ]
 
 
-const Todo: FC<Props> = ({ isAuth }) => {
-    const [todos, setTodos] = useState<ITodo[]>([])
-    const [isOpenModal, setIsOpenModal] = useState(false)
-    const [deletedId, setDeletedId] = useState(null)
-
-    const openModal = () => {
-        setIsOpenModal(true)
-    }
-
-    const closeModal = () => {
-        setIsOpenModal(false)
-    }
+const Todo = () => {
+    const isOpenModal = useSelector((state : any) => state.utilitiesReducer.isOpenModal)
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        setTodos(todosData)
-    }, [])
-
-
-    const checkedTodo = (id: number): void => {
-        const updated = todos.map(todo => {
-            if (todo.id === id) {
-                todo.closed = !todo.closed
-            }
-            return todo
-        })
-        setTodos(updated)
-    }
-
-    const editTodo = (id: number, text: string): void => {
-        const updated = todos.map(todo => {
-            if (todo.id === id) {
-                todo.text = text
-            }
-            return todo
-        })
-
-        setTodos(updated)
-    }
-
-    const deleteTodo = (id: number): void => {
-        const updated = todos.filter(todo => todo.id !== id && todo)
-        setTodos(updated)
-    }
-
-    const addTodo = (text: string) => {
-
-        setTodos([{
-            id: todos.length + 1,
-            text,
-            closed: false,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-        }, ...todos]);
-
-        console.log(todos);
-    }
+        dispatch(setTodosRedux(todosData))
+    }, [dispatch])
 
     return (
         <div className='page'>
-            <Header isAuth={isAuth} />
+            <Header />
 
             <div className="todo">
-                <AddTodo addTodo={addTodo} />
-                <Todos
-                    todos={todos}
-                    checkedTodo={checkedTodo}
-                    editTodo={editTodo}
-                    openModal={openModal}
-                    setDeletedItem={setDeletedId}
-                />
+                <AddTodo />
+                <Todos />
                 {
-                    isOpenModal && <Modal
-                        close={closeModal}
-                        active={isOpenModal}
-                        confirmDelete={() => deleteTodo(deletedId)}
-                        id={deletedId} 
-                    />
+                    isOpenModal && <Modal />
                 }
             </div>
         </div>

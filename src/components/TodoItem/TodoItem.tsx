@@ -3,18 +3,22 @@ import { Button } from 'components'
 import { Checkbox } from 'components/Checkbox'
 import { FC, useEffect, useState } from 'react'
 import { Todo } from 'types'
+import { useDispatch } from 'react-redux'
+import { setModal } from 'redux/slices/utilitiesSlice'
+import { setDeletedId } from 'redux/slices/todosSlice'
+import { checkedTodoRedux, editTodoRedux } from "redux/slices/todosSlice"
 
 
 interface Props {
-    checkedTodo: (id: number) => void
-    editTodo: (id: number, text: string) => void
-    openModal: () => void
-    setDeletedItem: (id: number) => void
+    
     data: Todo
 }
 
-const TodoItem: FC<Props> = ({ checkedTodo, editTodo, openModal, setDeletedItem, data: { id, text, closed, updatedAt } }) => {
-
+const TodoItem: FC<Props> = ({ data: { id, text, closed, updatedAt } }) => {
+    const dispatch = useDispatch();
+    const openModal = () => {
+        dispatch(setModal(true))
+    }
 
     const [edit, setEdit] = useState<boolean>(false)
     const [clicked, setClicked] = useState(false)
@@ -32,7 +36,7 @@ const TodoItem: FC<Props> = ({ checkedTodo, editTodo, openModal, setDeletedItem,
 
     const onEditItem = () => {
         !closed ? setEdit(!edit) : setEdit(false)
-        edit && editTodo(id, changedText)
+        edit &&  dispatch(editTodoRedux({id, changedText}))
     }
 
     return (
@@ -42,7 +46,8 @@ const TodoItem: FC<Props> = ({ checkedTodo, editTodo, openModal, setDeletedItem,
                 <span className="item-date">{updatedAt.toLocaleString('en', { hour12: false })}</span>
             </header>
             <div className="item-body" >
-                <Checkbox checked={closed} onClick={() => checkedTodo(id)} />
+
+                <Checkbox checked={closed} checkedTodo={() => { dispatch(checkedTodoRedux(id))}} />
 
                 <div className="item-text">
                     {
@@ -69,7 +74,7 @@ const TodoItem: FC<Props> = ({ checkedTodo, editTodo, openModal, setDeletedItem,
                     }
                     {
                         !edit && <Button
-                            onClick={() => { openModal(); setDeletedItem(id) }}
+                            onClick={() => { openModal(); dispatch(setDeletedId(id)) }}
                             className={'btn warning'}
                             icon={<TrashSVG className="btn-icon" />}
                         />
