@@ -42,6 +42,7 @@ const Input: FC<Props> = ({
         'input-field',
         icon && 'input-field-with-icon',
         button && 'input-field-with-btn',
+        className,
     )
 
     disabledButton = disabled || disabledButton

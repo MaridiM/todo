@@ -9,26 +9,54 @@
     /* TODO HEADER */
     /* DEFAULT */
     &-header
+        padding: 0px 10px
+        display: flex
+        justify-content: end
+
         &[data-create="false"]
-            display: flex
-            justify-content: flex-end
-
-        .btn
-            margin: 10px
-            background-color: #222A2A
-            color: rgba(255, 255, 255, 0.75)
-            border-radius: 10px
-            font-size: 16px
-            transition: .5s all
-
-            &:hover
-                background-color: #394249
+            .input
+                width: 124px
+                &-field
+                    // border: none
+                    &-with-btn
+                        padding-right: 122px
+                        padding-left: 0px
+                &-btn
+                    height: 100%
+                    margin: 0px
 
         /* TODO HEADER */
         /* CREATE */
         &[data-create="true"]
-            padding: 0px 10px
+            .input
+                width: 100%
+                &-field-with-btn
+                    padding-right: 122px
+                    padding-left: 16px
+                    animation: paddingRightAnimation .5s forwards, paddingLeftAnimation .5s .2s forwards
 
+                    @keyframes paddingRightAnimation
+                        from
+                            padding-right: 122px
+                        to
+                            padding-right: 140px
+
+                    @keyframes paddingLeftAnimation
+                        from
+                            padding-left: 0px
+                        to
+                            padding-left: 16px
+                &-btn
+                    height: 100%
+                    margin: 0px
+                    animation: btnBorderRadiusAnimation 1s forwards
+
+                @keyframes btnBorderRadiusAnimation
+                    from
+                        border-radius: 10px
+                    to
+                        border-radius: 0px 10px 10px 0px
+                
         /* TODO LIST */
     &-list
         height: auto

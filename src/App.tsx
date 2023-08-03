@@ -1,8 +1,8 @@
-import { paths } from 'core';
-import { Auth, Error404, Todo } from 'pages';
-import { Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import 'styles/index.sass';
+import { paths } from 'core'
+import { Auth, Error404, Todo } from 'pages'
+import { Routes, Route } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import 'styles/index.sass'
 
 
 const App = () => {

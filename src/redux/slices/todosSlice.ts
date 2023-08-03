@@ -3,7 +3,43 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     deletedId: null,
     checkedId: null,
-    todos: [],
+    todos: [
+        {
+            id: 1,
+            text: 'Dorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
+            closed: true,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        {
+            id: 2,
+            text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
+            closed: true,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        {
+            id: 3,
+            text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
+            closed: false,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        {
+            id: 4,
+            text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
+            closed: false,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        {
+            id: 5,
+            text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, nesciunt nulla modi repellendus autem corporis facilis amet vel beatae cupiditate.',
+            closed: false,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+    ],
 }
 
 export const todosSlice = createSlice({
