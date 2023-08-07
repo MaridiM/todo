@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import { TodoItem } from 'components'
 import { useSelector, useDispatch } from "react-redux"
 
-import { setTodosRedux } from 'redux/slices/todosSlice'
-
 
 const Todos = () => {
     
@@ -12,8 +10,6 @@ const Todos = () => {
     const categoryId = useSelector((state: any) => state.filterReducer.categoryId)
 
     const [filteredTodos, setFilteredTodos] = useState([]);
-
-    console.log('Category', categoryId, searchValue);
 
     const dispatch = useDispatch();
 
@@ -33,7 +29,7 @@ const Todos = () => {
     return (
         <div className="todo-list">
             {   
-                filteredTodos.filter(item => item.text.toLowerCase().includes(searchValue.toLowerCase())).map((item, index) => <TodoItem
+                todosRedux.map((item, index) => <TodoItem
                     key={index}
                     data={item}
                 />)

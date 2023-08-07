@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     deletedId: null,
@@ -40,62 +40,75 @@ const initialState = {
             updatedAt: new Date(),
         },
     ],
-}
+    searchValue: '',
+    categoryId: 0,
+};
 
 export const todosSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        setTodosRedux(state, action){
+        setTodosRedux(state, action) {
             state.todos = action.payload;
         },
 
-        setDeletedId(state, action){
-            state.deletedId = action.payload
+        setDeletedId(state, action) {
+            state.deletedId = action.payload;
         },
 
-        deleteTodoRedux(state, action){
-            const id = action.payload
-            const updated = state.todos.filter((todo: any) => todo.id !== id && todo)
+        deleteTodoRedux(state, action) {
+            const id = action.payload;
+            const updated = state.todos.filter((todo: any) => todo.id !== id && todo);
             state.todos = updated;
         },
 
-        checkedTodoRedux(state, action){
+        checkedTodoRedux(state, action) {
             const updated = state.todos.map((todo: any) => {
-            if (todo.id === action.payload) {
-                todo.closed = !todo.closed
-            }
-            return todo
-        })
+                if (todo.id === action.payload) {
+                    todo.closed = !todo.closed;
+                }
+                return todo;
+            });
             state.todos = updated;
         },
 
-        editTodoRedux(state, action){
-        const updated = state.todos.map(todo => {
-            if (todo.id === action.payload.id) {
-                todo.text = action.payload.changedText
-            }
-            return todo
-        })
+        editTodoRedux(state, action) {
+            const updated = state.todos.map(todo => {
+                if (todo.id === action.payload.id) {
+                    todo.text = action.payload.changedText;
+                }
+                return todo;
+            });
 
-        state.todos = updated;
-    },
+            state.todos = updated;
+        },
 
-        addTodoRedux(state, action){
-
+        addTodoRedux(state, action) {
             console.log(action);
 
-            state.todos = [{
-                id: state.todos.length + 1,
-                text: action.payload,
-                closed: false,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-            }, ...state.todos];
-    }
+            state.todos = [
+                {
+                    id: state.todos.length + 1,
+                    text: action.payload,
+                    closed: false,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                ...state.todos,
+            ];
+        },
+
+        setSearchValue(state, action) {
+            state.searchValue = action.payload;
+            state.todos.filter(todo => todo.text.toLowerCase().includes(state.searchValue.toLowerCase()));
+        },
+        setCategoryId(state, action) {
+            state.categoryId = action.payload;
+        },
     },
 });
 
-export const { setDeletedId, setTodosRedux, deleteTodoRedux, checkedTodoRedux, editTodoRedux, addTodoRedux } = todosSlice.actions
+export const { setDeletedId, setTodosRedux, deleteTodoRedux, checkedTodoRedux, editTodoRedux, addTodoRedux, setSearchValue, setCategoryId } =
+    todosSlice.actions;
 
-export default todosSlice.reducer
+export default todosSlice.reducer;
