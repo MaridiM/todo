@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
     deletedId: null,
@@ -42,23 +42,23 @@ const initialState = {
     ],
     searchValue: '',
     categoryId: 0,
-};
+}
 
 export const todosSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
         setTodosRedux(state, action) {
-            state.todos = action.payload;
+            state.todos = action.payload
         },
 
         setDeletedId(state, action) {
-            state.deletedId = action.payload;
+            state.deletedId = action.payload
         },
 
         deleteTodoRedux(state, action) {
             const id = action.payload;
-            const updated = state.todos.filter((todo: any) => todo.id !== id && todo);
+            const updated = state.todos.filter((todo: any) => todo.id !== id && todo)
             state.todos = updated;
         },
 
@@ -75,7 +75,7 @@ export const todosSlice = createSlice({
         editTodoRedux(state, action) {
             const updated = state.todos.map(todo => {
                 if (todo.id === action.payload.id) {
-                    todo.text = action.payload.changedText;
+                    todo.text = action.payload.changedText
                 }
                 return todo;
             });
@@ -99,16 +99,17 @@ export const todosSlice = createSlice({
         },
 
         setSearchValue(state, action) {
-            state.searchValue = action.payload;
-            state.todos.filter(todo => todo.text.toLowerCase().includes(state.searchValue.toLowerCase()));
+            state.searchValue = action.payload
+            const newTodos = state.todos.filter(todo => todo.text.toLowerCase().includes(state.searchValue.toLowerCase()))
+            state.todos = newTodos
         },
         setCategoryId(state, action) {
-            state.categoryId = action.payload;
+            state.categoryId = action.payload
         },
     },
 });
 
 export const { setDeletedId, setTodosRedux, deleteTodoRedux, checkedTodoRedux, editTodoRedux, addTodoRedux, setSearchValue, setCategoryId } =
-    todosSlice.actions;
+    todosSlice.actions
 
-export default todosSlice.reducer;
+export default todosSlice.reducer

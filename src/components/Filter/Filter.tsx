@@ -2,9 +2,9 @@ import { paths } from "core"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 
-import { useDispatch } from "react-redux"
+import { setCategoryId } from "redux/slices/todosSlice"
 
-import { setCategoryId } from "redux/slices/filterSlice"
+import { useDispatch } from "react-redux"
 
 interface Props {}
 
