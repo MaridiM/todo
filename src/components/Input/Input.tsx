@@ -51,6 +51,7 @@ const Input: FC<Props> = ({
         <div className='input'>
             {icon}
             <input
+                value={value}
                 onChange={onChange}
                 id={id}
                 className={fieldClasses}
