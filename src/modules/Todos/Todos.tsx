@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { TodoItem } from 'components'
 import { useSelector, useDispatch } from "react-redux"
 
@@ -6,7 +6,9 @@ import { useSelector, useDispatch } from "react-redux"
 const Todos = () => {
     
     const todosRedux = useSelector((state: any) => state.todosReducer.todos)
-    const categoryId = useSelector((state: any) => state.todosReducer.categoryId)
+    const searchValue = useSelector((state: any) => state.todosReducer.searchValue)
+    //const categoryId = useSelector((state: any) => state.todosReducer.categoryId)
+
 
     const dispatch = useDispatch();
 
@@ -26,7 +28,9 @@ const Todos = () => {
     return (
         <div className="todo-list">
             {   
-                todosRedux.map((item, index) => <TodoItem
+                todosRedux
+                .filter(todo => todo.text.toLowerCase().includes(searchValue.toLowerCase()))
+                .map((item, index) => <TodoItem
                     key={index}
                     data={item}
                 />)

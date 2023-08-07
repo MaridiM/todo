@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     deletedId: null,
@@ -100,8 +100,7 @@ export const todosSlice = createSlice({
 
         setSearchValue(state, action) {
             state.searchValue = action.payload
-            const newTodos = state.todos.filter(todo => todo.text.toLowerCase().includes(state.searchValue.toLowerCase()))
-            state.todos = newTodos
+
         },
         setCategoryId(state, action) {
             state.categoryId = action.payload
