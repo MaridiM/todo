@@ -3,6 +3,6 @@ export const paths: Record<string, any> = {
     login: '/login', 
     register: '/register', 
     todo: '/todo',
-    todoFilter: (filter: 'all' | 'opened' | 'closed' = 'all') => `/todo#${filter}`,
+    todoFilter: (filter: 'all' | 'opened' | 'closed' = 'all') => `/todo?${filter}`,
     
 }

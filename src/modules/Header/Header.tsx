@@ -1,15 +1,14 @@
-import { useDispatch, useSelector } from "react-redux"
-
-import { setSearchValue } from "redux/slices/todosSlice"
-import { Filter, HeaderTitle, Input } from "components"
-
+import { FC } from "react"
 import { SearchSVG } from "assets/icons"
+import { useDispatch, useSelector } from "react-redux"
+import { Filter, HeaderTitle, Input } from "components"
+import { setSearchValue } from "redux/slices/todosSlice"
 
-const Header = () => {
+interface Props { }
 
+const Header: FC<Props> = () => {
+    const dispatch = useDispatch();
     const searchValue = useSelector((state: any) => state.todosReducer.searchValue)
-
-    const dispatch =  useDispatch();
 
     return (
         <div className="header">

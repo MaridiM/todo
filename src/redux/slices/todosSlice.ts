@@ -4,17 +4,21 @@ import { Todo } from 'types';
 
 export interface TodoState {
     todos: Todo[]
-    deletedId: null | number
+    isEmpty: boolean
     searchValue: string
-    categoryId: 'all' | 'closed' | 'opened'
     isDataLoaded: boolean
+    filteredTodos: Todo[]
+    deletedId: null | number
+    categoryId: 'all' | 'closed' | 'opened'
 }
 
 const initialState: TodoState = {
     todos: [],
+    filteredTodos: [],
     deletedId: null,
     searchValue: '',
     categoryId: 'all',
+    isEmpty: false,
     isDataLoaded: false,
 }
 
@@ -29,14 +33,21 @@ export const todosSlice = createSlice({
         setCategoryId(state, action) {
             state.categoryId = action.payload
         },
-        
+
         setSearchValue(state, action) {
             state.searchValue = action.payload
-            let searchResult
-            if (state.searchValue !== '') {
-                searchResult = state.todos.filter(todo => todo.text.toLowerCase().includes(state.searchValue.toLowerCase()));
-                state.todos = searchResult
-            } 
+
+            // Search
+            const regex = new RegExp(`\\b${action.payload.toLowerCase()}\\b`);
+            state.filteredTodos = state.todos.filter(todo => {
+                return regex.test(todo.text.toLowerCase()) ||
+                    todo.text.toLowerCase().includes(action.payload.toLowerCase())
+            })
+
+            // Change isEmpty if serch input is not empty and filteredTodos Array is empty
+            !state.filteredTodos.length && state.searchValue.length 
+                ? (state.isEmpty = true)
+                : (state.isEmpty = false)
         },
     },
 
@@ -46,7 +57,7 @@ export const todosSlice = createSlice({
         builder
             .addCase(fetchTodos.fulfilled, (state, action) => {
                 // Add user to the state array
-                state.todos = action.payload
+                state.todos = action.payload.reverse()
                 state.isDataLoaded = true
             })
 
@@ -60,13 +71,13 @@ export const todosSlice = createSlice({
                     todo.id === edited.id ? { ...todo, ...edited } : todo
                 );
             })
-            
+
             .addCase(deleteTodo.fulfilled, (state, action) => {
                 const id = action.meta.arg;
                 state.todos = state.todos.filter(todo => todo.id !== id);
                 state.deletedId = null;
             })
-            
+
             .addCase(checkedTodo.fulfilled, (state, action) => {
                 state.todos.map(todo => {
                     if (todo.id === action.payload.id) {
@@ -78,6 +89,7 @@ export const todosSlice = createSlice({
     },
 });
 
+
 // fatching methods
 export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
     const data = await todosApi.fetchTodos();
@@ -86,8 +98,8 @@ export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
 
 export const addTodo = createAsyncThunk<Todo, string, {}>('todos/addTodo', async (text: string) => {
     const data = await todosApi.addTodo(text);
-        return data;
-    }
+    return data;
+}
 );
 
 export const editTodo = createAsyncThunk('todos/editTodo', async ({ id, changedText }: { id: number; changedText: string }) => {
@@ -110,12 +122,6 @@ export const {
     setDeletedId,
     setCategoryId,
     setSearchValue
-    // checkedTodoRedux,
-    // setTodosRedux,
-    // deleteTodoRedux,
-    // editTodoRedux,
-    // addTodoRedux,
-} =
-    todosSlice.actions;
+} = todosSlice.actions;
 
 export default todosSlice.reducer

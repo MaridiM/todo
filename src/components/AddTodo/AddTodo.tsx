@@ -10,6 +10,7 @@ const AddTodo = () => {
 
     // Request to server
     const dispatch = useAppDispatch()
+    
     const handleAddTodo = () => {
         dispatch(addTodo(inputText))
         setIsCreate(false)

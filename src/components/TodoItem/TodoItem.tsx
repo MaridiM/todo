@@ -3,7 +3,6 @@ import { Button } from 'components'
 import { Checkbox } from 'components/Checkbox'
 import { FC, useEffect, useState } from 'react'
 import { Todo } from 'types'
-
 import { setModal } from 'redux/slices/utilitiesSlice'
 import { checkedTodo, editTodo, setDeletedId } from 'redux/slices/todosSlice'
 import { useAppDispatch } from 'redux/hooks'
@@ -39,12 +38,13 @@ const TodoItem: FC<Props> = ({ data: { id, text, closed, updatedAt } }) => {
 
     const onClickItem = () => closed ? setClicked(false) : setClicked(!clicked)
     
+    const uDate = new Date(updatedAt)
 
     return (
         <div className="todo-item" data-closed={changed} data-clicked={clicked} data-edit={edit} onClick={onClickItem}>
             <header className="item-header">
                 <span className="item-id">#{id}</span>
-                <span className="item-date">{updatedAt.toLocaleString('en', { hour12: false })}</span>
+                <span className="item-date">{uDate.toLocaleString('en', { hour12: false })}</span>
             </header>
             <div className="item-body" >
 
