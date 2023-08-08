@@ -21,7 +21,7 @@ const AddTodo = () => {
                 className=""
                 onClick={!isCreate 
                     ? () => setIsCreate(true) : !inputText 
-                    ? () => setIsCreate(false) : () => {dispatch(addTodoRedux(inputText)); setIsCreate(false); }
+                    ? () => setIsCreate(false) : (e) => {dispatch(addTodoRedux(inputText)); setIsCreate(false); setInputText(''); }
                 }
             />
         </header>

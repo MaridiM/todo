@@ -41,7 +41,7 @@ const initialState = {
         },
     ],
     searchValue: '',
-    categoryId: 0,
+    categoryId: 'all',
 }
 
 export const todosSlice = createSlice({
@@ -84,8 +84,6 @@ export const todosSlice = createSlice({
         },
 
         addTodoRedux(state, action) {
-            console.log(action);
-
             state.todos = [
                 {
                     id: state.todos.length + 1,
