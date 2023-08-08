@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 import { useDispatch } from "react-redux"
 
-import { setCategoryId } from "redux/slices/filterSlice"
+import { setCategoryId } from "redux/slices/todosSlice"
 
 interface Props {}
 

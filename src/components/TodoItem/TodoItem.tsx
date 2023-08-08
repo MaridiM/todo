@@ -3,41 +3,42 @@ import { Button } from 'components'
 import { Checkbox } from 'components/Checkbox'
 import { FC, useEffect, useState } from 'react'
 import { Todo } from 'types'
-import { useDispatch } from 'react-redux'
+
 import { setModal } from 'redux/slices/utilitiesSlice'
-import { setDeletedId } from 'redux/slices/todosSlice'
-import { checkedTodoRedux, editTodoRedux } from "redux/slices/todosSlice"
+import { checkedTodo, editTodo, setDeletedId } from 'redux/slices/todosSlice'
+import { useAppDispatch } from 'redux/hooks'
 
 
 interface Props {
-    
     data: Todo
 }
 
 const TodoItem: FC<Props> = ({ data: { id, text, closed, updatedAt } }) => {
-    const dispatch = useDispatch();
-    const openModal = () => {
-        dispatch(setModal(true))
-    }
-
-    const [edit, setEdit] = useState<boolean>(false)
+    const dispatch = useAppDispatch()
     const [clicked, setClicked] = useState(false)
     const [changed, setChanged] = useState(false)
+    const [edit, setEdit] = useState<boolean>(false)
     const [changedText, setChangedText] = useState('')
-
+    
     useEffect(() => {
         setChangedText(text)
         setChanged(closed)
         setClicked(false)
     }, [changed, closed, text])
+    
+    
 
-
-    const onClickItem = () => closed ? setClicked(false) : setClicked(!clicked)
+    const openModal = () => {
+        dispatch(setModal(true))
+    }
 
     const onEditItem = () => {
         !closed ? setEdit(!edit) : setEdit(false)
-        edit &&  dispatch(editTodoRedux({id, changedText}))
+        edit &&  dispatch(editTodo({id, changedText}))
     }
+
+    const onClickItem = () => closed ? setClicked(false) : setClicked(!clicked)
+    
 
     return (
         <div className="todo-item" data-closed={changed} data-clicked={clicked} data-edit={edit} onClick={onClickItem}>
@@ -47,7 +48,7 @@ const TodoItem: FC<Props> = ({ data: { id, text, closed, updatedAt } }) => {
             </header>
             <div className="item-body" >
 
-                <Checkbox checked={closed} checkedTodo={() => { dispatch(checkedTodoRedux(id))}} />
+                <Checkbox checked={closed} checkedTodo={() => { dispatch(checkedTodo(id))}} />
 
                 <div className="item-text">
                     {

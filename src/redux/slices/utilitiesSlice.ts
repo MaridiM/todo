@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+export interface UtilitiesState {
+    isAuth: boolean;
+    isOpenModal: boolean;
+}
+
+const initialState: UtilitiesState = {
     isAuth: true,
     isOpenModal: false,
 }

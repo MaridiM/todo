@@ -1,35 +1,45 @@
 import { useEffect, useState } from 'react'
 import { TodoItem } from 'components'
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+import { fetchTodos } from 'redux/slices/todosSlice'
+import { Todo } from 'types'
+import { useAppDispatch } from 'redux/hooks'
 
 
 const Todos = () => {
     
-    const todosRedux = useSelector((state: any) => state.todosReducer.todos)
-    const searchValue = useSelector((state : any) => state.filterReducer.searchValue)
-    const categoryId = useSelector((state: any) => state.filterReducer.categoryId)
+    const todos = useSelector((state: any) => state.todosReducer.todos)
+    const categoryId = useSelector((state: any) => state.todosReducer.categoryId)
+    const isDataLoaded = useSelector((state: any ) => state.todosReducer.isDataLoaded)
+    const searchValue = useSelector((state: any) => state.todosReducer.searchValue)
 
-    const [filteredTodos, setFilteredTodos] = useState([]);
+    const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]); 
 
-    const dispatch = useDispatch();
-
+    const dispatch = useAppDispatch();
+    
     useEffect(() => {
-         switch (categoryId) {
-        case 0 : 
-            setFilteredTodos(todosRedux);
-            break;
-        case 1: 
-            setFilteredTodos(todosRedux.filter(item => item.closed === false));
-            break;
-        case 2:
-            setFilteredTodos(todosRedux.filter(item => item.closed === true));
-    } 
-    }, [categoryId])  
+        if (!isDataLoaded && todos.length === 0) {
+            dispatch(fetchTodos());
+        }
+        
+        let filtered = [...todos];
+        switch (categoryId) {
+            case 0:
+                setFilteredTodos(filtered);
+                break;
+            case 1:
+                setFilteredTodos(filtered.filter(item => !item.closed));
+                break;
+            case 2:
+                setFilteredTodos(filtered.filter(item => item.closed));
+                break;
+        } 
+    }, [categoryId, dispatch, isDataLoaded, todos])  
 
     return (
         <div className="todo-list">
             {   
-                todosRedux.map((item, index) => <TodoItem
+                todos.map((item, index) => <TodoItem
                     key={index}
                     data={item}
                 />)

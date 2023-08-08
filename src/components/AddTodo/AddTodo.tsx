@@ -1,13 +1,19 @@
 import { Input } from "components"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { addTodoRedux } from "redux/slices/todosSlice"
+import { useAppDispatch } from "redux/hooks"
+import { addTodo } from "redux/slices/todosSlice"
 
 
 const AddTodo = () => {
-    const dispatch = useDispatch()
     const [isCreate, setIsCreate] = useState<boolean>(false)
     const [inputText, setInputText] = useState<string>('')
+
+    // Request to server
+    const dispatch = useAppDispatch()
+    const handleAddTodo = () => {
+        dispatch(addTodo(inputText))
+        setIsCreate(false)
+    }
 
     return (
         <header className="todo-header" data-create={isCreate}>
@@ -21,7 +27,7 @@ const AddTodo = () => {
                 className=""
                 onClick={!isCreate 
                     ? () => setIsCreate(true) : !inputText 
-                    ? () => setIsCreate(false) : () => {dispatch(addTodoRedux(inputText)); setIsCreate(false); }
+                    ? () => setIsCreate(false) : () => handleAddTodo()
                 }
             />
         </header>
