@@ -1,7 +1,6 @@
 import { paths } from "core"
 import { FC } from "react"
 import { Link } from "react-router-dom"
-
 import { useDispatch } from "react-redux"
 
 import { setCategoryId } from "redux/slices/todosSlice"
@@ -14,13 +13,13 @@ const Filter: FC<Props> = () => {
 
     return (
         <ul className="nav">
-            <li onClick={() => dispatch(setCategoryId(0))} className="nav-item">
+            <li onClick={() => dispatch(setCategoryId('all'))} className="nav-item">
                 <Link to={paths.todoFilter('all')}>All</Link>
             </li>
-            <li onClick={() => dispatch(setCategoryId(1))} className="nav-item nav-item-acticve">
+            <li onClick={() => dispatch(setCategoryId(false))} className="nav-item nav-item-acticve">
                 <Link to={paths.todoFilter('opened')}>Opened</Link>
             </li>
-            <li onClick={() => dispatch(setCategoryId(2))} className="nav-item">
+            <li onClick={() => dispatch(setCategoryId(true))} className="nav-item">
                 <Link to={paths.todoFilter('closed')}>Closed</Link>
             </li>
         </ul>

@@ -5,71 +5,31 @@ import { Todo } from 'types';
 export interface TodoState {
     todos: Todo[]
     deletedId: null | number
-    checkedId: null | number
     searchValue: string
-    categoryId: number
+    categoryId: 'all' | 'closed' | 'opened'
     isDataLoaded: boolean
 }
 
 const initialState: TodoState = {
     todos: [],
     deletedId: null,
-    checkedId: null,
     searchValue: '',
-    categoryId: 0,
+    categoryId: 'all',
     isDataLoaded: false,
-};
+}
 
 export const todosSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        
         setDeletedId(state, action) {
-            state.deletedId = action.payload;
+            state.deletedId = action.payload
         },
 
-        
         setCategoryId(state, action) {
-            state.categoryId = action.payload;
+            state.categoryId = action.payload
         },
         
-        // checkedTodoRedux(state, action) {
-        //     state.checkedId = action.payload;
-        // },
-        // setTodosRedux(state, action) {
-        //     state.todos = action.payload;
-        // },
-        // deleteTodoRedux(state, action) {
-        //     const id = action.payload;
-        //     const updated = state.todos.filter((todo: Todo) => todo.id !== id && todo);
-        //     state.todos = updated;
-        // },
-
-        // editTodoRedux(state, action) {
-        //     const updated = state.todos.map(todo => {
-        //         if (todo.id === action.payload.id) {
-        //             todo.text = action.payload.changedText;
-        //         }
-        //         return todo;
-        //     });
-
-        //     state.todos = updated;
-        // },
-
-        // addTodoRedux(state, action) {
-        //     state.todos = [
-        //         {
-        //             id: state.todos.length + 1,
-        //             text: action.payload,
-        //             closed: false,
-        //             createdAt: new Date(),
-        //             updatedAt: new Date(),
-        //         },
-        //         ...state.todos,
-        //     ];
-        // },
-
         setSearchValue(state, action) {
             state.searchValue = action.payload
             let searchResult
@@ -99,12 +59,10 @@ export const todosSlice = createSlice({
                 state.todos = state.todos.map(todo =>
                     todo.id === edited.id ? { ...todo, ...edited } : todo
                 );
-                state.deletedId = null;
             })
             
             .addCase(deleteTodo.fulfilled, (state, action) => {
                 const id = action.meta.arg;
-
                 state.todos = state.todos.filter(todo => todo.id !== id);
                 state.deletedId = null;
             })
@@ -160,4 +118,4 @@ export const {
 } =
     todosSlice.actions;
 
-export default todosSlice.reducer;
+export default todosSlice.reducer

@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
 
 import { setSearchValue } from "redux/slices/todosSlice"
 import { Filter, HeaderTitle, Input } from "components"

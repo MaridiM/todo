@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { TodoItem } from 'components'
 import { useSelector } from "react-redux"
 import { fetchTodos } from 'redux/slices/todosSlice'
 import { Todo } from 'types'
 import { useAppDispatch } from 'redux/hooks'
+import { useState, useEffect } from 'react'
 
 
 const Todos = () => {
@@ -39,7 +40,16 @@ const Todos = () => {
     return (
         <div className="todo-list">
             {   
-                todos.map((item, index) => <TodoItem
+                todos
+                .filter(todo => {if (categoryId === 'all') {
+                    return true
+                } else if (categoryId === false && !todo.closed) {
+                    return true
+                } else if (categoryId === true && todo.closed) {
+                    return true
+                }})
+                .filter(todo => todo.text.toLowerCase().includes(searchValue.toLowerCase()))
+                .map((item, index) => <TodoItem
                     key={index}
                     data={item}
                 />)
