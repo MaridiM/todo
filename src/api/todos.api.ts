@@ -81,6 +81,12 @@ export const todosApi = {
             updatedAt: new Date(),
         });
 
+        console.log(response.data);
         return response.data
     },
+
+    getTodos: async (categoryId: string, searchValue: string) : Promise<Todo[]> => {
+      const respons = await axios.get(`http://localhost:5000/todos?${categoryId}${searchValue ? `&q=${searchValue}` : ''}`)
+      return respons.data  
+    }
 }
