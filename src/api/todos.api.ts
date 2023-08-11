@@ -86,7 +86,8 @@ export const todosApi = {
     },
 
     getTodos: async (categoryId: string, searchValue: string) : Promise<Todo[]> => {
-      const respons = await axios.get(`http://localhost:5000/todos?${categoryId}${searchValue ? `&q=${searchValue}` : ''}`)
+      const filter = categoryId === 'closed' ? 'closed=true' : categoryId === 'opened' ? 'closed=false' : '';
+      const respons = await axios.get(`http://localhost:5000/todos?${filter}${searchValue ? `&q=${searchValue}` : ''}`)
       return respons.data  
     }
 }

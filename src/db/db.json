@@ -30,31 +30,31 @@
     },
     {
       "id": 506643,
-      "text": "qweqweqwe",
-      "closed": true,
+      "text": "kwakwa",
+      "closed": false,
       "createdAt": "2023-08-08T20:13:05.904Z",
-      "updatedAt": "2023-08-09T13:54:24.974Z"
+      "updatedAt": "2023-08-11T16:28:43.843Z"
     },
     {
       "id": 83833,
       "text": "asd",
       "closed": true,
       "createdAt": "2023-08-08T20:25:39.231Z",
-      "updatedAt": "2023-08-10T15:07:53.049Z"
+      "updatedAt": "2023-08-11T16:19:32.015Z"
     },
     {
       "id": 895608,
       "text": "ButtHead",
       "closed": false,
       "createdAt": "2023-08-09T11:30:35.078Z",
-      "updatedAt": "2023-08-10T14:32:49.676Z"
+      "updatedAt": "2023-08-11T16:21:02.428Z"
     },
     {
       "id": 294118,
       "text": "Add issue",
       "closed": false,
       "createdAt": "2023-08-09T14:17:08.371Z",
-      "updatedAt": "2023-08-10T14:32:02.220Z"
+      "updatedAt": "2023-08-11T16:22:40.969Z"
     },
     {
       "id": 765507,
@@ -75,7 +75,7 @@
       "text": "sadasd",
       "closed": true,
       "createdAt": "2023-08-09T19:10:44.728Z",
-      "updatedAt": "2023-08-10T15:07:35.982Z"
+      "updatedAt": "2023-08-11T16:22:33.556Z"
     }
   ]
 }

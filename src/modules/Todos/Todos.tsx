@@ -16,6 +16,8 @@ const Todos = () => {
     // const [isEmptyTodos, setIsEmptyTodos] = useState<boolean>(false); 
     
     useEffect(() => {
+        const pathFilter = document.location.search.split('?')[1]
+        pathFilter !== categoryId && dispatch(setCategoryId(pathFilter))
         dispatch(getTodos({categoryId, searchValue}));
       }, [dispatch, categoryId, searchValue])
 

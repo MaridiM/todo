@@ -9,7 +9,8 @@ export interface TodoState {
     isDataLoaded: boolean
     filteredTodos: Todo[]
     deletedId: null | number
-    categoryId: '' | 'closed=true' | 'closed=false'
+    //categoryId: '' | 'closed=true' | 'closed=false'
+    categoryId: 'all' | 'closed' | 'opened'
 }
 
 const initialState: TodoState = {
@@ -17,7 +18,8 @@ const initialState: TodoState = {
     filteredTodos: [],
     deletedId: null,
     searchValue: '',
-    categoryId: '',
+    //categoryId: '',
+    categoryId: 'all',
     isEmpty: false,
     isDataLoaded: false,
 }
@@ -80,7 +82,7 @@ export const todosSlice = createSlice({
 
             .addCase(checkedTodo.fulfilled, (state, action) => {
                 
-                if(state.categoryId) {
+                if(state.categoryId !== 'all') {
                     state.todos = state.todos.filter(todo => todo.id !== action.payload.id)
                 } else {
                     state.todos.map(todo => {
