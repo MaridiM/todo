@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { ReactNode, HTMLInputTypeAttribute, FC } from 'react'
 
 interface Props {
+    inputRef?: any
     args?: any
     id: string
     name?: string
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const Input: FC<Props> = ({
+    inputRef,
     id,
     icon,
     type,
@@ -51,6 +53,7 @@ const Input: FC<Props> = ({
         <div className='input'>
             {icon}
             <input
+                ref={inputRef}
                 value={value}
                 onChange={onChange}
                 id={id}
